@@ -28,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "all fields are required");
   }
   //check if user already exists
-  const userCheck = await User.findOne({ username });
+  const userCheck = await User.findOne({ $or: [{ username }, { email }] });
   if (userCheck) {
     throw new ApiError(401, "user already exists");
   }
@@ -44,10 +44,10 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     email,
     password,
-    avatar: uploadedAvatar.url,
+    avatar: uploadedAvatar?.url,
   });
 
-  const newUser = await User.findById(user._id).select("-password");
+  const newUser = await User.findById(user?._id).select("-password");
 
   if (!newUser) {
     throw new ApiError(501, "error occurred while registering");
