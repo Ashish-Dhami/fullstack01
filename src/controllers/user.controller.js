@@ -4,7 +4,6 @@ import ApiResponse from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { deleteFromUrl, upload } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   if (!userId) return { accessToken: null, refreshToken: null };

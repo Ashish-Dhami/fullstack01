@@ -5,7 +5,6 @@ import ApiResponse from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { deleteFromUrl, upload } from "../utils/cloudinary.js";
 import fs from "fs";
-import removeUploadedFiles from "multer/lib/remove-uploaded-files.js";
 
 const getAllVideos = asyncHandler(async (req, res) => {
   const {
